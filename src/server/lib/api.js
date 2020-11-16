@@ -6,3 +6,11 @@ function foo1(a, b, a) {
 var bar = function (a, b, a) {
     console.log('value of the second a:', a);
 };
+
+var dbq = function (req, res) {
+    const db = {};
+    const results = db.search(req.query.product);
+    if (results.length === 0) {
+      return res.send('<p>No results found for "' + req.query.product + '"</p>');
+    }
+}
