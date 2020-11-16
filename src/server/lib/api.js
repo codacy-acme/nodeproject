@@ -9,6 +9,7 @@ var bar = function (a, b, a) {
 
 var dbq = function (req, res) {
     const db = {};
+    const r0 = db.query('SELECT * FROM products WHERE id = ' + req.query.id);
     const results = db.search(req.query.product);
     if(document){
         document.write("writing on document");
