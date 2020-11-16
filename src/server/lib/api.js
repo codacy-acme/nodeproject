@@ -10,6 +10,9 @@ var bar = function (a, b, a) {
 var dbq = function (req, res) {
     const db = {};
     const results = db.search(req.query.product);
+    if(document){
+        document.write("writing on document");
+    }
     if (results.length === 0) {
       return res.send('<p>No results found for "' + req.query.product + '"</p>');
     }
