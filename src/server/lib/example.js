@@ -6,6 +6,17 @@ exports.pluralize = function (count, singular, plural) {
   return `${count} ${plural}`;
 };
 
+exports.fizzbuzz = function (input) {
+  let output = ''
+  if(input % 3 === 0) 
+      output += 'Fizz'
+  if(input % 5 === 0) 
+      output += 'Buzz'
+  if(input % 99 === 0) output += 'Stranger'
+
+  return output.length > 0 ? output : input.toString()
+};
+
 exports.sum = function (a,b) {
   return a+b;
 };
