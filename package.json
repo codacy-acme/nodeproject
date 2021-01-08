@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter dot",
-    "coverage": "nyc --reporter html --reporter text npm test",
+    "coverage": "nyc --reporter lcov --reporter text npm test",
     "coverage-to-codacy": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | codacy-coverage --token 2a2d93a8709a4db6b1c6dda2f646334f && rm -rf ./coverage"
   },
   "repository": {
