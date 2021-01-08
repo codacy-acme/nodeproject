@@ -7,14 +7,15 @@ exports.pluralize = function (count, singular, plural) {
 };
 
 exports.fizzbuzz = function (input) {
-  let output = ''
-  if(input % 3 === 0) 
-      output += 'Fizz'
-  if(input % 5 === 0) 
-      output += 'Buzz'
-  if(input % 99 === 0) output += 'Stranger'
+  let output = "";
+  if(input % 3 === 0){
+      output += "Fizz";
+  }
+  if(input % 5 === 0){
+      output += "Buzz";
+  }
 
-  return output.length > 0 ? output : input.toString()
+  return output.length > 0 ? output : input.toString();
 };
 
 exports.sum = function (a,b) {
