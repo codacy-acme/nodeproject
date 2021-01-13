@@ -48,7 +48,7 @@ jobs:
       run: |
         curl -fsSL -o pulse-event-cli https://dl.bintray.com/codacy/pulse/event-cli/1.7.3/pulse-event-cli_darwin_amd64/pulse-event-cli
         chmod +x pulse-event-cli
-        ./pulse-event-cli help
+        ls -l ./pulse-event-cli
       env:
         CI: true
   
