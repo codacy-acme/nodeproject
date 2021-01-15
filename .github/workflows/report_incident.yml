@@ -20,10 +20,10 @@ jobs:
         run: |
           curl -fsSL -o pulse-event-cli https://dl.bintray.com/codacy/pulse/event-cli/1.7.3/pulse-event-cli_linux_386/pulse-event-cli
           chmod +x pulse-event-cli
-          echo "$(date --date "${{ github.event.inputs.timeToFix }}" +%s)"
+          echo "$(date --date "-${{ github.event.inputs.timeToFix }} min" +%s)"
           ./pulse-event-cli push incident \
             --api-key "${{ secrets.PULSE_TOKEN }}" \
             --identifier "$(date +%s)" \
-            --timestampCreated "$(date --date "${{ github.event.inputs.timeToFix }}" +%s)" \
+            --timestampCreated "$(date --date "-${{ github.event.inputs.timeToFix }} min" +%s)" \
             --timestampResolved "$(date +%s)" \
             --system "nodeproject"
