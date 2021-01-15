@@ -29,9 +29,9 @@ describe('example', function () {
       assert.strictEqual(fizzbuzz(3), "Fizz");
     });
 
-    // it('should return "Buzz" when the input is 5', function() {
-    //   assert.strictEqual(fizzbuzz(5), "Buzz");
-    // });
+    it('should return "Buzz" when the input is 5', function() {
+      assert.strictEqual(fizzbuzz(5), "Buzz");
+    });
 
     it('should return "Fizz" when the input is 6', function() {
       assert.strictEqual(fizzbuzz(6), "Fizz");
