@@ -1,3 +1,4 @@
+// Adding comment for re-analysis
 function foo1(a, b, a) {
     typeof a === undefined
     console.log('value of the second a:', a);
