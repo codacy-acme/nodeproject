@@ -19,7 +19,7 @@ jobs:
       - name: Report Changes and Deployment to Pulse
         run: |
           curl -fsSL -o pulse-event-cli https://dl.bintray.com/codacy/pulse/event-cli/1.7.3/pulse-event-cli_linux_386/pulse-event-cli
-          chmod +x pulse-event-cli
+          chmod +x pulse-event-cli 
           ./pulse-event-cli push incident \
             --api-key "${{ secrets.PULSE_TOKEN }}" \
             --identifier "$(date +%s)" \
