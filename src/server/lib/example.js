@@ -1,6 +1,6 @@
 exports.pluralize = function (count, singular, plural) {
   if (count === 1) {
-    console.log("forgotten debug statement. Small Change")
+    console.log("forgotten debug statement. Smaller Change")
     return `${count} ${singular}`;
   }
   plural = plural || `${singular}s`;
