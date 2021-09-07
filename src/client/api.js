@@ -10,3 +10,8 @@ var bar = function (a, b, c) {
 var car = function (a, b, c) {
     console.log("value of the second c:", c);
 };
+
+var dar = function (a, b, c, d) {
+    console.log("value of the second d:", d);
+};
+
