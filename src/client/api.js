@@ -17,3 +17,8 @@ var log = function(message,level) {
     console.log("######## WE ARE LOGGING SOMETHING")
     console.log(message);
 };
+
+var anotherLogFunction = function(message,level) {
+    console.log("######## WE ARE LOGGING SOMETHING ELSE")
+    console.log(message);
+};
