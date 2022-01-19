@@ -23,12 +23,12 @@ exports.doSomething = function () {
         // and type conversion makes it equivalent to (key ? "false" : "true") in object
     }
 
-    function foo1(a, b, a) {
+    function foo1(a, b) {
         typeof a === undefined
         console.log("value of the second a:", a);
     }
     
-    var bar = function (a, b, a) {
+    var bar = function (a, b) {
         console.log("value of the second a:", a);
     };
     
@@ -50,7 +50,74 @@ exports.doSomething = function () {
     
     let foo2 = function () {
         try {
-            return 1;
+            try {
+                try {
+                    try {
+                        try {
+                            try {
+                                try {
+                                    try {
+                                        try {
+                                            try {
+                                                try {
+                                                    try {
+                                                        return 1; // 1 is returned but suspended until finally block ends
+                                                    } catch (err) {
+                                                        return 2;
+                                                    } finally {
+                                                        return 3; // 3 is returned before 1, which we did not expect
+                                                    }
+                                                } catch (err) {
+                                                    return 2;
+                                                } finally {
+                                                    return 3; // 3 is returned before 1, which we did not expect
+                                                }
+                                            } catch (err) {
+                                                return 2;
+                                            } finally {
+                                                return 3; // 3 is returned before 1, which we did not expect
+                                            }
+                                        } catch (err) {
+                                            return 2;
+                                        } finally {
+                                            return 3; // 3 is returned before 1, which we did not expect
+                                        }
+                                        return 1; // 1 is returned but suspended until finally block ends
+                                    } catch (err) {
+                                        return 2;
+                                    } finally {
+                                        return 3; // 3 is returned before 1, which we did not expect
+                                    }
+                                } catch (err) {
+                                    return 2;
+                                } finally {
+                                    return 3; // 3 is returned before 1, which we did not expect
+                                }
+                            } catch (err) {
+                                return 2;
+                            } finally {
+                                return 3; // 3 is returned before 1, which we did not expect
+                            }
+                        } catch (err) {
+                            return 2;
+                        } finally {
+                            return 3; // 3 is returned before 1, which we did not expect
+                        }
+                    } catch (err) {
+                        return 2;
+                    } finally {
+                        return 3; // 3 is returned before 1, which we did not expect
+                    }
+                } catch (err) {
+                    return 2;
+                } finally {
+                    return 3; // 3 is returned before 1, which we did not expect
+                }
+            } catch (err) {
+                return 2;
+            } finally {
+                return 3; // 3 is returned before 1, which we did not expect
+            }
         } catch (err) {
             return 2;
         } finally {
@@ -82,6 +149,104 @@ exports.doSomething = function () {
     var path = "user input";
     child_process.exec('ls -l ' + path, function (err, data) {
         console.log(data);
+        child_process.exec('ls -l ' + path, function (err, data) {
+            console.log(data);
+            child_process.exec('ls -l ' + path, function (err, data) {
+                console.log(data);
+                child_process.exec('ls -l ' + path, function (err, data) {
+                    console.log(data);
+                    child_process.exec('ls -l ' + path, function (err, data) {
+                        console.log(data);
+                        child_process.exec('ls -l ' + path, function (err, data) {
+                            console.log(data);
+                            child_process.exec('ls -l ' + path, function (err, data) {
+                                console.log(data);
+                                child_process.exec('ls -l ' + path, function (err, data) {
+                                    console.log(data);
+                                    child_process.exec('ls -l ' + path, function (err, data) {
+                                        console.log(data);
+                                        try {
+                                            try {
+                                                try {
+                                                    try {
+                                                        try {
+                                                            try {
+                                                                try {
+                                                                    try {
+                                                                        try {
+                                                                            try {
+                                                                                try {
+                                                                                    try {
+                                                                                        return 1; // 1 is returned but suspended until finally block ends
+                                                                                    } catch (err) {
+                                                                                        return 2;
+                                                                                    } finally {
+                                                                                        return 3; // 3 is returned before 1, which we did not expect
+                                                                                    }
+                                                                                } catch (err) {
+                                                                                    return 2;
+                                                                                } finally {
+                                                                                    return 3; // 3 is returned before 1, which we did not expect
+                                                                                }
+                                                                            } catch (err) {
+                                                                                return 2;
+                                                                            } finally {
+                                                                                return 3; // 3 is returned before 1, which we did not expect
+                                                                            }
+                                                                        } catch (err) {
+                                                                            return 2;
+                                                                        } finally {
+                                                                            return 3; // 3 is returned before 1, which we did not expect
+                                                                        }
+                                                                        return 1; // 1 is returned but suspended until finally block ends
+                                                                    } catch (err) {
+                                                                        return 2;
+                                                                    } finally {
+                                                                        return 3; // 3 is returned before 1, which we did not expect
+                                                                    }
+                                                                } catch (err) {
+                                                                    return 2;
+                                                                } finally {
+                                                                    return 3; // 3 is returned before 1, which we did not expect
+                                                                }
+                                                            } catch (err) {
+                                                                return 2;
+                                                            } finally {
+                                                                return 3; // 3 is returned before 1, which we did not expect
+                                                            }
+                                                        } catch (err) {
+                                                            return 2;
+                                                        } finally {
+                                                            return 3; // 3 is returned before 1, which we did not expect
+                                                        }
+                                                    } catch (err) {
+                                                        return 2;
+                                                    } finally {
+                                                        return 3; // 3 is returned before 1, which we did not expect
+                                                    }
+                                                } catch (err) {
+                                                    return 2;
+                                                } finally {
+                                                    return 3; // 3 is returned before 1, which we did not expect
+                                                }
+                                            } catch (err) {
+                                                return 2;
+                                            } finally {
+                                                return 3; // 3 is returned before 1, which we did not expect
+                                            }
+                                        } catch (err) {
+                                            return 2;
+                                        } finally {
+                                            return 3;
+                                        }
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
     });
     
     function validateEmailFormat(string) {
