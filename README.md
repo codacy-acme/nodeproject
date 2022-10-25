@@ -14,4 +14,4 @@
 ### just a commit to test something
 
 
-## Something that will be changed
+## Something that will be changed [skip ci]
