@@ -1,61 +1,62 @@
 name: Master Build
-
-on:
+'on':
   push:
     branches:
       - master
-
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version:
+          - 12.x
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
-    
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    
-    - name: npm coverage
-      run: |
-        set -e
-        npm install
-        npm run coverage-to-codacy
-        cov=$(curl -s -X GET https://api.codacy.com/2.0/project \
-          -H 'Accept: application/json' \
-          -H 'project_token: ${{ secrets.CODACY_TOKEN }}' | jq -r '.commit.commit.grade')
-        echo $cov
-        if [[ "$cov" == "A" ]]
-          then
-            echo -e "\e[1;42m Grade $cov is ok. Build will continue. \e[0m"
-          else
-            echo -e "\e[1;31m Grade $cov is below the expected and the build will stop. \e[0m"
-        fi
-      env:
-        CI: true
-    
-    - name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.26.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
-        INITIAL_VERSION: 0.3.0
-        DRY_RUN: true
-    
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm coverage
+        run: |
+          set -e
+          npm install
+          npm run coverage-to-codacy
+          cov=$(curl -s -X GET https://api.codacy.com/2.0/project \
+            -H 'Accept: application/json' \
+            -H 'project_token: ${{ secrets.CODACY_TOKEN }}' | jq -r '.commit.commit.grade')
+          echo $cov
+          if [[ "$cov" == "A" ]]
+            then
+              echo -e "\e[1;42m Grade $cov is ok. Build will continue. \e[0m"
+            else
+              echo -e "\e[1;31m Grade $cov is below the expected and the build will stop. \e[0m"
+          fi
+        env:
+          CI: true
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.26.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          INITIAL_VERSION: 0.3.0
+          DRY_RUN: true
+      - name: Upload coverage report to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: '${{ secrets.CODACY_PROJECT_TOKEN }}   '
   upload-to-pulse:
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Report Changes and Deployment to Pulse
-        run: |
-          curl -fsSL -o pulse-event-cli https://dl.bintray.com/codacy/pulse/event-cli/1.7.3/pulse-event-cli_linux_386/pulse-event-cli
+        run: >
+          curl -fsSL -o pulse-event-cli
+          https://dl.bintray.com/codacy/pulse/event-cli/1.7.3/pulse-event-cli_linux_386/pulse-event-cli
+
           chmod +x pulse-event-cli
+
           ./pulse-event-cli push git deployment \
             --api-key "${{ secrets.PULSE_TOKEN }}" \
             --previous-deployment-ref "$(git rev-parse HEAD^1)" \
